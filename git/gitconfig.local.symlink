@@ -1,5 +1,8 @@
 # vi: ft=gitconfig
-
+[column]
+	ui = auto
+[branch]
+	sort = -committerdate
 [alias]
 	co = checkout
 	count = shortlog -sn
@@ -30,19 +33,21 @@
 [apply]
 	whitespace = nowarn
 [help]
-	autocorrect = 1
+	autocorrect = prompt
 [grep]
 	extendRegexp = true
 	lineNumber = true
 [push]
 	autoSetupRemote = true
 	default = simple
+	followTags = true
 [submodule]
 	fetchJobs = 4
 [commit]
 	gpgsign = true
 [tag]
 	gpgsign = true
+	sort = version:refname
 [log]
 	showSignature = false
 [pull]
@@ -52,12 +57,23 @@
 [format]
 	signOff = true
 [diff]
-    tool = nvimdiff
+	tool = nvimdiff
+	algorithm = histogram
+	colorMoved = plain
+	mnemonicPrefix = true
+	renames = true
 [difftool "nvimdiff"]
-    cmd = nvim -d "$LOCAL" "$REMOTE"
+	cmd = nvim -d "$LOCAL" "$REMOTE"
 [merge]
-    tool = nvimmerge
+	tool = nvimmerge
+	conflictstyle = zdiff3
 [mergetool "nvimmerge"]
-    cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+	cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 [rerere]
 	enabled = true
+[include]
+	path = ~/.gitconfig.shipyard-defaults
+[rebase]
+	autoSquash = true
+	autoStash = true
+	updateRefs = true
